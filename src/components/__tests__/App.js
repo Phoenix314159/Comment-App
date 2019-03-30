@@ -3,7 +3,7 @@ import React from 'react'
 import App from 'components/App'
 import CommentBox from 'components/CommentBox'
 import CommentList from 'components/CommentList'
-import { shallow } from 'enzyme'
+import {shallow} from 'enzyme'
 // import ReduxStore from 'root'
 
 let component;
@@ -12,7 +12,7 @@ beforeEach(() => {
     component = shallow(<App/>);
 });
 // it('renders without crashing', () => {
-//     const div = document.createElement('div')
+//     const div = mount(<ReduxStore><App/></ReduxStore>)
 //     ReactDOM.render(component, div)
 // })
 it('shows the comment box', () => {

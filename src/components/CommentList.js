@@ -5,6 +5,7 @@ class CommentList extends Component {
 
     renderComments() {
         const {comments} = this.props;
+
         return comments.map(comment => {
             return <li key={comment}>{comment}</li>
         })
