@@ -1,11 +1,13 @@
 import React from 'react'
 import CommentBox from 'components/CommentBox'
 import {mount} from "enzyme";
+import ReduxStore from 'root'
+
 
 let component;
 
 beforeEach(() => {
-    component = mount(<CommentBox/>)
+    component = mount(<ReduxStore><CommentBox/></ReduxStore>)
 });
 
 afterEach(() => {
