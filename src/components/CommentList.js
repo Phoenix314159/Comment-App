@@ -1,5 +1,27 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
-export default () => {
-    return <div>This is the comment list</div>
+class CommentList extends Component {
+
+    renderComments() {
+        const {comments} = this.props
+        return comments.map(comment => {
+            return <li key={comment}>{comment}</li>
+        })
+    }
+
+    render() {
+
+        return(
+            <div>
+                <ul>
+                    {this.renderComments()}
+                </ul>
+            </div>
+        )
+    }
 }
+
+const mapStateToProps = ({comments}) => ({comments})
+
+export default connect(mapStateToProps)(CommentList)
