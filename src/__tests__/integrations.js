@@ -4,7 +4,15 @@ import ReduxStore from 'root'
 import App from 'components/App'
 import moxios from 'moxios'
 
+
+let component;
+
 beforeEach(() => {
+    component = mount(
+        <ReduxStore>
+            <App/>
+        </ReduxStore>
+    );
     moxios.install();
     moxios.stubRequest('http://jsonplaceholder.typicode.com/comments',
         {
@@ -15,19 +23,14 @@ beforeEach(() => {
 
 afterEach(() => {
     moxios.uninstall();
+    component.unmount();
 });
 
 it('can fetch a list of comments and display them', done => {
-    const component = mount(
-        <ReduxStore>
-            <App/>
-        </ReduxStore>
-    );
     component.find('.fetch-comments').simulate('click');
-    setTimeout(() => {
+    moxios.wait(() => {
         component.update();
         expect(component.find('li').length).toEqual(2);
         done();
-    },100)
-    // expect(component.find('li').length).toEqual(2);
+    })
 });
